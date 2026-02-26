@@ -11,8 +11,8 @@ function App() {
   const [expenseType, setExpenseType] = useState<TransactionType>("expense");
 
   return (
-    <div className="flex flex-col lg:flex-row">
-      <div className="bg-[#1f2937] rounded-lg m-5 pt-4 p-4">
+    <div className="flex flex-col lg:flex-row items-center p-5">
+      <div className="bg-[#1f2937] rounded-lg m-5 pt-4 p-4 w-full">
         <div className="flex items-center mb-5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -33,9 +33,13 @@ function App() {
           <div className="flex justify-between items-center mb-4">
             <p className="text-md font-bold">Add Transaction</p>
             {expenseType == "expense" ? (
-              <div className="badge bg-amber-900 text-amber-500">Expense</div>
+              <div className="badge bg-amber-900 text-amber-500 border-0">
+                Expense
+              </div>
             ) : (
-              <div className="badge bg-green-900 text-green-400">Income</div>
+              <div className="badge bg-green-900 text-green-400 border-0">
+                Income
+              </div>
             )}
           </div>
 
@@ -157,27 +161,28 @@ function App() {
         </div>
       </div>
       <div className="bg-[#1f2937] rounded-lg m-5 pt-4 p-4 w-full">
-        {/* Search + Filter — fixed, never scrolls */}
         <div className="flex flex-col sm:flex-row gap-3 shrink-0 items-center">
-          <label className="input bg-[#374151] border-[#374151] flex-1">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="size-5 text-gray-400 shrink-0"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
-                clipRule="evenodd"
+          <div className="flex flex-col w-full gap-1">
+            <label className="input bg-[#374151] border-[#374151] w-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="size-5 text-gray-400 shrink-0"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <input
+                type="text"
+                className="grow bg-[#374151]"
+                placeholder="Search Transactions..."
               />
-            </svg>
-            <input
-              type="text"
-              className="grow bg-[#374151]"
-              placeholder="Search transactions..."
-            />
-          </label>
+            </label>
+          </div>
           <div className="sm:w-56 shrink-0">
             <CategoryDropdown
               placeholder="All Categories"
@@ -195,7 +200,7 @@ function App() {
             />
           </div>
         </div>
-        <div className="max-h-64 lg:max-h-[600px] overflow-x-scroll mt-5">
+        <div className="max-h-64 lg:max-h-150 overflow-x-scroll mt-5">
           {dummyTransactions.map((t) => (
             <TransactionCard
               key={t.id}
