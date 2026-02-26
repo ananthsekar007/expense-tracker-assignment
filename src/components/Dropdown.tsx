@@ -14,7 +14,7 @@ interface CategoryDropdownProps {
 }
 
 export default function CategoryDropdown({
-  label = "Category",
+  label,
   options,
   value,
   onChange,
