@@ -22,7 +22,7 @@ function App() {
   const [category, setCategory] = useState("food");
   const [errors, setErrors] = useState<FormErrors>({});
 
-  const { transactions, addTransaction } = useTransactions();
+  const { transactions, addTransaction, deleteTransaction } = useTransactions();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -269,7 +269,7 @@ function App() {
                 key={t.id}
                 transaction={t}
                 onEdit={(id) => console.log("Edit", id)}
-                onDelete={(id) => console.log("Delete", id)}
+                onDelete={(id) => deleteTransaction(id)}
               />
             ))
           )}
