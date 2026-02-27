@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useId } from "react";
 import "./App.css";
 import ExpenseToggle from "./components/ExpenseToggle";
 import CategoryDropdown from "./components/Dropdown";
@@ -20,6 +20,7 @@ function App() {
   const [type, setType] = useState<TransactionType>("expense");
   const [category, setCategory] = useState("food");
   const [errors, setErrors] = useState<FormErrors>({});
+  const uniqueId = useId()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,6 +56,7 @@ function App() {
     e.currentTarget.reset();
     setType("expense");
     setCategory("food");
+    setErrors({})
   };
 
   return (
@@ -260,7 +262,7 @@ function App() {
         <div className="gap-3 max-h-64 lg:max-h-150 overflow-y-auto mt-5">
           {dummyTransactions.map((t) => (
             <TransactionCard
-              key={t.id}
+              key={uniqueId}
               transaction={t}
               onEdit={(id) => console.log("Edit", id)}
               onDelete={(id) => console.log("Delete", id)}
