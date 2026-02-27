@@ -4,7 +4,7 @@ import ExpenseToggle from "./components/ExpenseToggle";
 import CategoryDropdown from "./components/Dropdown";
 import type { TransactionType } from "./components/ExpenseToggle";
 import TransactionCard from "./components/TransactionCard";
-import { CATEGORIES } from "./constants/constants";
+import { CATEGORIES, FILTER_CATEGORIES } from "./constants/constants";
 import { validateForm, type FormErrors } from "./helpers/formalValidation";
 import { useTransactions } from "./context/TransactionContext";
 import EditTransactionModal from "./components/EditTransactionModal";
@@ -17,6 +17,8 @@ function App() {
   const [editingTransaction, setEditingTransaction] =
     useState<Transaction | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [filterCategory, setFilterCategory] = useState("all");
+  const [search, setSearch] = useState("");
 
   const {
     transactions,
@@ -24,6 +26,13 @@ function App() {
     deleteTransaction,
     getTransactionById,
   } = useTransactions();
+
+  const filtered = transactions.filter((t) => {
+    const matchesSearch = t.title.toLowerCase().includes(search.toLowerCase());
+    const matchesCategory =
+      filterCategory === "all" || t.category === filterCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -50,7 +59,7 @@ function App() {
     };
 
     addTransaction(values);
-    e.currentTarget.reset()
+    e.currentTarget.reset();
   };
 
   const handleClear = (e: React.FormEvent<HTMLFormElement>) => {
@@ -263,27 +272,26 @@ function App() {
               type="text"
               className="grow bg-[#374151]"
               placeholder="Search Transactions..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </label>
           <div className="sm:w-56 shrink-0">
             <CategoryDropdown
               placeholder="All Categories"
-              value={"all"}
-              onChange={() => {}}
-              options={[
-                { value: "all", label: "All Categories" },
-                ...CATEGORIES,
-              ]}
+              value={filterCategory}
+              onChange={setFilterCategory}
+              options={FILTER_CATEGORIES}
             />
           </div>
         </div>
         <div className="gap-3 h-64 lg:h-150 overflow-y-auto mt-5">
-          {transactions.length === 0 ? (
+          {filtered.length === 0 ? (
             <p className="text-center text-gray-500 mt-10">
-              No transactions found!
+              {transactions.length === 0 ? "No transactions yet. Add one!" : "No transactions match your filters."}
             </p>
           ) : (
-            transactions.map((t) => (
+            filtered.map((t) => (
               <TransactionCard
                 key={t.id}
                 transaction={t}

@@ -9,6 +9,11 @@ export const CATEGORIES = [
   { value: "salary", label: "Salary" },
 ];
 
+export const FILTER_CATEGORIES = [
+  { value: "all", label: "All Categories" },
+  ...CATEGORIES,
+];
+
 export const dummyTransactions: Transaction[] = [
   {
     id: "1",
@@ -189,5 +194,5 @@ export const dummyTransactions: Transaction[] = [
     amount: "220.50",
     date: "2024-01-22",
     category: "Salary",
-  }
+  },
 ];
