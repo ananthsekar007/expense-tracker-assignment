@@ -40,6 +40,7 @@ export default function TransactionToggle({
       />
       <button
         onClick={() => handleSelect("expense")}
+        type="button"
         className={`
           relative z-10 flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold
           transition-colors duration-300 cursor-pointer select-none w-32 justify-center
@@ -51,6 +52,7 @@ export default function TransactionToggle({
       </button>
       <button
         onClick={() => handleSelect("income")}
+        type="button"
         className={`
           relative z-10 flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold
           transition-colors duration-300 cursor-pointer select-none w-32 justify-center

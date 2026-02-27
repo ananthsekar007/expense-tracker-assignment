@@ -1,4 +1,4 @@
-import { useState, useId } from "react";
+import { useState } from "react";
 import "./App.css";
 import ExpenseToggle from "./components/ExpenseToggle";
 import CategoryDropdown from "./components/Dropdown";
@@ -6,6 +6,7 @@ import type { TransactionType } from "./components/ExpenseToggle";
 import TransactionCard from "./components/TransactionCard";
 import { dummyTransactions } from "./constants/constants";
 import { validateForm, type FormErrors } from "./helpers/formalValidation";
+import { useTransactions } from "./context/TransactionContext";
 
 const CATEGORIES = [
   { value: "food", label: "Food" },
@@ -20,7 +21,8 @@ function App() {
   const [type, setType] = useState<TransactionType>("expense");
   const [category, setCategory] = useState("food");
   const [errors, setErrors] = useState<FormErrors>({});
-  const uniqueId = useId()
+
+  const { transactions, addTransaction } = useTransactions();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,10 +39,7 @@ function App() {
 
     if (Object.keys(newErrors).length > 0) return;
 
-    let id = crypto.randomUUID();
-
     const values = {
-      id,
       type,
       category,
       title,
@@ -49,14 +48,14 @@ function App() {
       date,
     };
 
-    console.log(values);
+    addTransaction(values);
   };
 
   const handleClear = (e: React.FormEvent<HTMLFormElement>) => {
     e.currentTarget.reset();
     setType("expense");
     setCategory("food");
-    setErrors({})
+    setErrors({});
   };
 
   return (
@@ -259,15 +258,21 @@ function App() {
             />
           </div>
         </div>
-        <div className="gap-3 max-h-64 lg:max-h-150 overflow-y-auto mt-5">
-          {dummyTransactions.map((t) => (
-            <TransactionCard
-              key={uniqueId}
-              transaction={t}
-              onEdit={(id) => console.log("Edit", id)}
-              onDelete={(id) => console.log("Delete", id)}
-            />
-          ))}
+        <div className="gap-3 h-64 lg:h-150 overflow-y-auto mt-5">
+          {transactions.length === 0 ? (
+            <p className="text-center text-gray-500 mt-10">
+              No transactions found!
+            </p>
+          ) : (
+            transactions.map((t) => (
+              <TransactionCard
+                key={t.id}
+                transaction={t}
+                onEdit={(id) => console.log("Edit", id)}
+                onDelete={(id) => console.log("Delete", id)}
+              />
+            ))
+          )}
         </div>
       </div>
     </div>
