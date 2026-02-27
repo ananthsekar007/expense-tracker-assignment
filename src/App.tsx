@@ -11,7 +11,7 @@ function App() {
   const [expenseType, setExpenseType] = useState<TransactionType>("expense");
 
   return (
-    <div className="flex flex-col lg:flex-row items-center p-5">
+    <div className="flex flex-col lg:flex-row p-5">
       <div className="bg-[#1f2937] rounded-lg m-5 pt-4 p-4 w-full">
         <div className="flex items-center mb-5">
           <svg
