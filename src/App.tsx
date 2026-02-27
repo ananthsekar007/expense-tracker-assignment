@@ -4,25 +4,26 @@ import ExpenseToggle from "./components/ExpenseToggle";
 import CategoryDropdown from "./components/Dropdown";
 import type { TransactionType } from "./components/ExpenseToggle";
 import TransactionCard from "./components/TransactionCard";
-import { dummyTransactions } from "./constants/constants";
+import { CATEGORIES } from "./constants/constants";
 import { validateForm, type FormErrors } from "./helpers/formalValidation";
 import { useTransactions } from "./context/TransactionContext";
-
-const CATEGORIES = [
-  { value: "food", label: "Food" },
-  { value: "transport", label: "Transport" },
-  { value: "shopping", label: "Shopping" },
-  { value: "health", label: "Health" },
-  { value: "entertainment", label: "Entertainment" },
-  { value: "salary", label: "Salary" },
-];
+import EditTransactionModal from "./components/EditTransactionModal";
+import type { Transaction } from "./types/types";
 
 function App() {
   const [type, setType] = useState<TransactionType>("expense");
   const [category, setCategory] = useState("food");
   const [errors, setErrors] = useState<FormErrors>({});
+  const [editingTransaction, setEditingTransaction] =
+    useState<Transaction | null>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  const { transactions, addTransaction, deleteTransaction } = useTransactions();
+  const {
+    transactions,
+    addTransaction,
+    deleteTransaction,
+    getTransactionById,
+  } = useTransactions();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,6 +50,7 @@ function App() {
     };
 
     addTransaction(values);
+    e.currentTarget.reset()
   };
 
   const handleClear = (e: React.FormEvent<HTMLFormElement>) => {
@@ -58,8 +60,25 @@ function App() {
     setErrors({});
   };
 
+  const handleEditClick = (id: string) => {
+    const transaction = getTransactionById(id);
+    if (transaction) {
+      setEditingTransaction(transaction);
+      setIsEditModalOpen(true);
+    }
+  };
+
   return (
     <div className="flex flex-col lg:flex-row items-center lg:items-start p-5">
+      <EditTransactionModal
+        transaction={editingTransaction}
+        open={isEditModalOpen}
+        onClose={() => {
+          setIsEditModalOpen(false);
+          setEditingTransaction(null);
+        }}
+      />
+
       <div className="bg-[#1f2937] rounded-lg m-5 pt-4 p-4 w-full">
         <div className="flex items-center mb-5">
           <svg
@@ -268,7 +287,7 @@ function App() {
               <TransactionCard
                 key={t.id}
                 transaction={t}
-                onEdit={(id) => console.log("Edit", id)}
+                onEdit={handleEditClick}
                 onDelete={(id) => deleteTransaction(id)}
               />
             ))

@@ -1,5 +1,14 @@
 import type { Transaction } from "../types/types";
 
+export const CATEGORIES = [
+  { value: "food", label: "Food" },
+  { value: "transport", label: "Transport" },
+  { value: "shopping", label: "Shopping" },
+  { value: "health", label: "Health" },
+  { value: "entertainment", label: "Entertainment" },
+  { value: "salary", label: "Salary" },
+];
+
 export const dummyTransactions: Transaction[] = [
   {
     id: "1",
