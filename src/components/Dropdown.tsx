@@ -30,7 +30,6 @@ export default function CategoryDropdown({
       )}
 
       <div className="relative w-full">
-        {/* Trigger */}
         <button
           type="button"
           onClick={(e) => {
@@ -46,7 +45,6 @@ export default function CategoryDropdown({
           <ChevronIcon open={open} />
         </button>
 
-        {/* Menu */}
         {open && (
           <ul
             className="absolute z-50 w-full mt-1.5 bg-[#374151] border border-white/10 rounded-xl shadow-xl overflow-hidden p-1"
@@ -75,7 +73,6 @@ export default function CategoryDropdown({
         )}
       </div>
 
-      {/* Close on outside click */}
       {open && (
         <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
       )}
