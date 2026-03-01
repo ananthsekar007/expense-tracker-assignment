@@ -76,7 +76,6 @@ export default function EditTransactionModal({
     >
       <div className="modal-box bg-[#1f2937] max-w-md w-full">
 
-        {/* Header */}
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-bold">Edit Transaction</h3>
           <button
