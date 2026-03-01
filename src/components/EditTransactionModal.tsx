@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import CategoryDropdown from "./Dropdown";
-import ExpenseToggle from "./ExpenseToggle";
 import type { TransactionType } from "./ExpenseToggle";
 import { validateForm, type FormErrors } from "../helpers/formalValidation";
 import { useTransactions } from "../context/TransactionContext";
