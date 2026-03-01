@@ -34,6 +34,13 @@ export const CATEGORY_DOT_COLORS: Record<string, string> = {
     utilities: "bg-violet-400",
   };
 
+export const SUGGESTIONS = [
+    "What's my biggest expense category?",
+    "How much have I spent in total?",
+    "What's my income vs expenses ratio?",
+    "Where can I cut back on spending?",
+  ];
+
 export const dummyTransactions: Transaction[] = [
   {
     id: "1",

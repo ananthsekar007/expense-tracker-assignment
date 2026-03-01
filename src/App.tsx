@@ -5,6 +5,7 @@ import EditTransactionModal from "./components/EditTransactionModal";
 import AddTransactionForm from "./components/AddTransaction";
 import TransactionList from "./components/TransactionList";
 import FinancialOverview from "./components/FInancialOverview";
+import AIChat from "./components/AIChat";
 
 function App() {
   const { getTransactionById } = useTransactions();
@@ -31,6 +32,7 @@ function App() {
       <TransactionList onEdit={handleEditClick} />
     </div>
     <FinancialOverview />
+    <AIChat />
     </>
     
   );

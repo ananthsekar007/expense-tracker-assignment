@@ -1,4 +1,3 @@
-// src/components/FinancialOverview.tsx
 import { useMemo } from "react";
 import { useTransactions } from "../context/TransactionContext";
 import { CATEGORY_COLORS, CATEGORY_DOT_COLORS } from "../constants/constants";
@@ -46,7 +45,7 @@ export default function FinancialOverview() {
     : 0;
 
   return (
-    <div className="bg-[#1f2937] rounded-lg m-10 p-6">
+    <div className="bg-[#1f2937] rounded-lg m-5 lg:m-10 p-6 mb-15">
       <h2 className="text-lg font-bold mb-5">Financial Overview</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
