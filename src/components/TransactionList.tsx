@@ -54,7 +54,7 @@ export default function TransactionList({ onEdit }: TransactionListProps) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-3 h-64 lg:h-150 overflow-y-auto mt-5">
+      <div className="flex flex-col gap-3 max-h-150 lg:h-150 overflow-y-auto mt-5">
         {filtered.length === 0 ? (
           <p className="text-center text-gray-500 mt-10">
             {transactions.length === 0 ? "No transactions yet. Add one!" : "No transactions match your filters."}

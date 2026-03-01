@@ -14,7 +14,7 @@ export default function TransactionCard({
   const isExpense = transaction.type === "expense";
 
   return (
-    <div className="flex items-center w-full bg-[#111827] rounded-xl px-3 py-3 gap-3 mb-5 relative overflow-hidden">
+    <div className="flex items-center w-full bg-[#111827] rounded-xl px-3 py-3 gap-3 relative overflow-hidden">
       <div
         className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-xl ${
           isExpense ? "bg-red-500" : "bg-green-500"
