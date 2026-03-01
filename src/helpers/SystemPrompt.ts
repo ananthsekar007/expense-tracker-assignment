@@ -1,6 +1,6 @@
 import type { Transaction } from "../types/types";
 
-export const buildSystemPrompt (transactions: Transaction[]): string => {
+export function buildSystemPrompt (transactions: Transaction[]): string {
   const fmt = (n: number) => `$${Number(n).toFixed(2)}`;
 
   const totalIncome = transactions
