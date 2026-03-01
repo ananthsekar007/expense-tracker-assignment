@@ -4,6 +4,7 @@ import type { Transaction } from "./types/types";
 import EditTransactionModal from "./components/EditTransactionModal";
 import AddTransactionForm from "./components/AddTransaction";
 import TransactionList from "./components/TransactionList";
+import FinancialOverview from "./components/FInancialOverview";
 
 function App() {
   const { getTransactionById } = useTransactions();
@@ -19,6 +20,7 @@ function App() {
   };
 
   return (
+    <>
     <div className="flex flex-col lg:flex-row items-center lg:items-start p-5">
       <EditTransactionModal
         transaction={editingTransaction}
@@ -28,6 +30,9 @@ function App() {
       <AddTransactionForm />
       <TransactionList onEdit={handleEditClick} />
     </div>
+    <FinancialOverview />
+    </>
+    
   );
 }
 

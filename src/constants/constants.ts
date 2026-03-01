@@ -14,6 +14,26 @@ export const FILTER_CATEGORIES = [
   ...CATEGORIES,
 ];
 
+export const CATEGORY_COLORS: Record<string, string> = {
+    food: "bg-red-500",
+    transport: "bg-blue-500",
+    shopping: "bg-purple-500",
+    health: "bg-green-500",
+    entertainment: "bg-pink-500",
+    salary: "bg-emerald-500",
+    utilities: "bg-violet-500",
+  };
+
+export const CATEGORY_DOT_COLORS: Record<string, string> = {
+    food: "bg-red-400",
+    transport: "bg-blue-400",
+    shopping: "bg-purple-400",
+    health: "bg-green-400",
+    entertainment: "bg-pink-400",
+    salary: "bg-emerald-400",
+    utilities: "bg-violet-400",
+  };
+
 export const dummyTransactions: Transaction[] = [
   {
     id: "1",
