@@ -2,6 +2,8 @@
 
 A full-featured personal finance tracker built with React, TypeScript, Tailwind CSS, and DaisyUI. Track your income and expenses, visualize spending patterns, and get AI-powered insights about your finances.
 
+Link to the Deployed Project - https://expense-tracker-assignment-ashen.vercel.app/
+
 ---
 
 ## ✨ Features
